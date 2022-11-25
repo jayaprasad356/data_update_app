@@ -13,6 +13,32 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/monti_med"
+                android:text="Name : "
+                android:textStyle="bold"
+                android:alpha="0.7"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/monti_med"
+                android:text="John"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/tvTransactionType"
             android:layout_width="wrap_content"
@@ -35,6 +61,33 @@
             android:text="22 may 2022"
             android:textColor="@color/black"
             android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/monti_med"
+                android:layout_marginEnd="10dp"
+                android:text="Balance"
+                android:textStyle="bold"
+                android:alpha="0.7"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/monti_med"
+                android:text="100"
+                android:textStyle="bold"
+                android:textColor="@color/Primary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <TextView

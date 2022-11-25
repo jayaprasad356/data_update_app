@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.greymatter.dataupdate.Adapters.TransactionAdapter;
 import com.greymatter.dataupdate.Models.TransactionModel;
+import com.greymatter.dataupdate.Services.FloatingService;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        startService(new Intent(getApplicationContext(), FloatingService.class));
+
 
         cvAddTransaction = findViewById(R.id.cvAddTransaction);
         tvProfileName = findViewById(R.id.tvProfileInitial);
@@ -37,6 +41,12 @@ public class HomeActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvNumber = findViewById(R.id.tvNumber);
         recyclerView = findViewById(R.id.RecyclerTransactions);
+        findViewById(R.id.cvMakeUser).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this,MakeUserActivity.class));
+            }
+        });
         ctx = HomeActivity.this;
         transactionModelsArrayList = new ArrayList<>();
         transactionModelsArrayList.add(new TransactionModel("Salary","22 may 2022","+100"));
@@ -50,5 +60,11 @@ public class HomeActivity extends AppCompatActivity {
         cvAddTransaction.setOnClickListener( v-> {
             startActivity(new Intent(this,AddTransAction.class));
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(getApplicationContext(),FloatingService.class));
     }
 }
