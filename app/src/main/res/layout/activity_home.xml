@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/monti_med"
-                android:text="Tamil arsan"
+                tools:text="Tamilarsan"
                 android:textColor="@color/CustomWhite"
                 android:textSize="18sp" />
 
@@ -140,7 +140,6 @@
             app:cardBackgroundColor="@color/CustomWhite"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

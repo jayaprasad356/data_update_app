@@ -1,4 +1,4 @@
-package com.greymatter.dataupdate.Models;
+package com.greymatter.dataupdate.models;
 
 public class MakeUserModel {
 

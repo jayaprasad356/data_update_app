@@ -1,12 +1,10 @@
-package com.greymatter.dataupdate.Adapters;
+package com.greymatter.dataupdate.adapters;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.AlphaAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,14 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.NonUiContext;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.greymatter.dataupdate.Models.MakeUserModel;
+import com.greymatter.dataupdate.models.MakeUserModel;
 import com.greymatter.dataupdate.R;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MakeUserAdapter extends RecyclerView.Adapter<MakeUserAdapter.viewholder> {
 

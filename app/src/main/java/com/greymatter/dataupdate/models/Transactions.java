@@ -1,13 +1,13 @@
-package com.greymatter.dataupdate.Models;
+package com.greymatter.dataupdate.models;
 
-public class TransactionModel {
+public class Transactions {
 
     private String TransactionName;
     private String TransactionDate;
     private String TransactionAmount;
 
 
-    public TransactionModel(String transactionName, String transactionDate, String transactionAmount) {
+    public Transactions(String transactionName, String transactionDate, String transactionAmount) {
         TransactionName = transactionName;
         TransactionDate = transactionDate;
         TransactionAmount = transactionAmount;

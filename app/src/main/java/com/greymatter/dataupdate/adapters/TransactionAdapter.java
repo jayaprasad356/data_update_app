@@ -1,4 +1,4 @@
-package com.greymatter.dataupdate.Adapters;
+package com.greymatter.dataupdate.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,18 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.greymatter.dataupdate.Models.TransactionModel;
+import com.greymatter.dataupdate.models.Transactions;
 import com.greymatter.dataupdate.R;
 
 import java.util.ArrayList;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.viewholder> {
 
-    private ArrayList<TransactionModel> transactionModelsArrayList;
+    private ArrayList<Transactions> transactionModelsArrayList;
     private Context ctx;
 
 
-    public TransactionAdapter(ArrayList<TransactionModel> transactionModelsArrayList,Context ctx) {
+    public TransactionAdapter(ArrayList<Transactions> transactionModelsArrayList, Context ctx) {
         this.transactionModelsArrayList = transactionModelsArrayList;
         this.ctx = ctx;
     }
@@ -34,7 +34,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-        TransactionModel model = transactionModelsArrayList.get(position);
+        Transactions model = transactionModelsArrayList.get(position);
         holder.tvTransactionType.setText(model.getTransactionName());
         holder.TvTransactionAmount.setText(model.getTransactionAmount());
         holder.TvTransactionDate.setText(model.getTransactionDate());

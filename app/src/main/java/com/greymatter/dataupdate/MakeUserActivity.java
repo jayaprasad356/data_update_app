@@ -5,17 +5,15 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.greymatter.dataupdate.Adapters.MakeUserAdapter;
-import com.greymatter.dataupdate.Models.MakeUserModel;
+import com.greymatter.dataupdate.adapters.MakeUserAdapter;
+import com.greymatter.dataupdate.models.MakeUserModel;
 
 import java.util.ArrayList;
 
