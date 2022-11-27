@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/monti_med"
-                android:text="Make User"
+                android:text="Manage User"
                 android:textColor="@color/Primary"
                 android:textSize="15sp" />
         </androidx.cardview.widget.CardView>

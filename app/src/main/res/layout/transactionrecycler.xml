@@ -40,7 +40,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvTransactionType"
+            android:id="@+id/tvRemarks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -51,7 +51,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tvTransactionAmountDate"
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -91,7 +91,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvTransactionAmount"
+        android:id="@+id/tvAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

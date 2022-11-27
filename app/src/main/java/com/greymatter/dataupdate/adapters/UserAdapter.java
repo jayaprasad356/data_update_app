@@ -14,18 +14,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.greymatter.dataupdate.models.MakeUserModel;
+import com.greymatter.dataupdate.models.Users;
 import com.greymatter.dataupdate.R;
 
 import java.util.ArrayList;
 
-public class MakeUserAdapter extends RecyclerView.Adapter<MakeUserAdapter.viewholder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
 
 
-    private ArrayList<MakeUserModel> makeUserModelArrayList;
+    private ArrayList<Users> usersArrayList;
     private Context ctx;
-    public MakeUserAdapter(ArrayList<MakeUserModel> makeUserModelArrayList,Context ctx) {
-        this.makeUserModelArrayList = makeUserModelArrayList;
+    public UserAdapter(ArrayList<Users> usersArrayList, Context ctx) {
+        this.usersArrayList = usersArrayList;
         this.ctx = ctx;
     }
 
@@ -39,7 +39,7 @@ public class MakeUserAdapter extends RecyclerView.Adapter<MakeUserAdapter.viewho
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-         MakeUserModel model = makeUserModelArrayList.get(position);
+         Users model = usersArrayList.get(position);
         AlphaAnimation animation = new AlphaAnimation(0.0f,1.0f);
         animation.setDuration(1000);
         animation.setFillAfter(true);
@@ -67,12 +67,12 @@ public class MakeUserAdapter extends RecyclerView.Adapter<MakeUserAdapter.viewho
         });
         holder.Name.setText(model.getName());
         holder.PhoneNumber.setText(model.getMobile());
-        holder.Balance.setText(model.getPassword());
+        holder.Balance.setText(model.getBalance());
     }
 
     @Override
     public int getItemCount() {
-        return makeUserModelArrayList.size();
+        return usersArrayList.size();
     }
 
     public class viewholder extends RecyclerView.ViewHolder {

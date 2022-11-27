@@ -33,53 +33,17 @@
             android:fontFamily="@font/monti_med"
             android:textColor="@color/CustomWhite"/>
     </RelativeLayout>
-
-<!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Type"
-        android:textColor="@color/black"
-        android:fontFamily="@font/monti_med"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"/>
-        -->
-
-    <!--
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="25dp">
-
-        <RadioButton
-            android:id="@+id/radioDebit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Debit"
-            android:textColor="@color/black"
-            android:buttonTint="@color/Primary"
-            android:bufferType="normal"
-            android:textSize="15sp"
-            android:fontFamily="@font/monti_med"/>
-        <RadioButton
-            android:id="@+id/radioCredit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Credit"
-            android:textColor="@color/black"
-            android:layout_marginStart="10dp"
-            android:textSize="15sp"
-            android:backgroundTint="@color/Primary"
-            android:buttonTint="@color/Primary"
-            android:fontFamily="@font/monti_med"/>
-    </RadioGroup>
-
--->
+    <Spinner
+        android:id="@+id/spinUser"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:padding="18dp"
+        android:textSize="20sp"
+        android:background="@drawable/et_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:entries="@array/project"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,19 +81,19 @@
         android:layout_marginTop="20dp"/>
     <EditText
         android:id="@+id/etRemark"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="6"
+        android:gravity="top|start"
+        android:maxLines="10"
+        android:padding="5dp"
         android:background="@drawable/et_back"
         android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:maxLines="2"
-        android:textColorHint="@color/black"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/monti_med"
-        android:inputType="text"
-        android:layout_marginHorizontal="25dp">
-    </EditText>
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:scrollbars="vertical"
+        android:layout_marginHorizontal="25dp"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvTransfer"

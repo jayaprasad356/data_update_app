@@ -2,39 +2,53 @@ package com.greymatter.dataupdate.models;
 
 public class Transactions {
 
-    private String TransactionName;
-    private String TransactionDate;
-    private String TransactionAmount;
+    private String name,balance,amount,remarks,date;
 
-
-    public Transactions(String transactionName, String transactionDate, String transactionAmount) {
-        TransactionName = transactionName;
-        TransactionDate = transactionDate;
-        TransactionAmount = transactionAmount;
+    public Transactions(String name, String balance, String amount, String remarks, String date) {
+        this.name = name;
+        this.balance = balance;
+        this.amount = amount;
+        this.remarks = remarks;
+        this.date = date;
     }
 
-
-    public String getTransactionName() {
-        return TransactionName;
+    public String getName() {
+        return name;
     }
 
-    public void setTransactionName(String transactionName) {
-        TransactionName = transactionName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTransactionDate() {
-        return TransactionDate;
+    public String getBalance() {
+        return balance;
     }
 
-    public void setTransactionDate(String transactionDate) {
-        TransactionDate = transactionDate;
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 
-    public String getTransactionAmount() {
-        return TransactionAmount;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setTransactionAmount(String transactionAmount) {
-        TransactionAmount = transactionAmount;
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

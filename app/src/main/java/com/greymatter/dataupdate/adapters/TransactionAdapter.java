@@ -35,9 +35,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         Transactions model = transactionModelsArrayList.get(position);
-        holder.tvTransactionType.setText(model.getTransactionName());
-        holder.TvTransactionAmount.setText(model.getTransactionAmount());
-        holder.TvTransactionDate.setText(model.getTransactionDate());
+        holder.tvName.setText(model.getName());
+        holder.tvRemarks.setText(model.getRemarks());
+        holder.tvDate.setText(model.getDate());
+        holder.tvBalance.setText(model.getBalance());
+        holder.tvAmount.setText(model.getAmount());
     }
 
     @Override
@@ -47,14 +49,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        private TextView tvTransactionType;
-        private TextView TvTransactionDate;
-        private TextView TvTransactionAmount;
+        private TextView tvName,tvRemarks,tvDate,tvBalance,tvAmount;
         public viewholder(@NonNull View itemView) {
             super(itemView);
-            tvTransactionType = itemView.findViewById(R.id.tvTransactionType);
-            TvTransactionDate = itemView.findViewById(R.id.tvTransactionAmountDate);
-            TvTransactionAmount = itemView.findViewById(R.id.tvTransactionAmount);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvRemarks = itemView.findViewById(R.id.tvRemarks);
+            tvDate = itemView.findViewById(R.id.tvDate);
+            tvBalance = itemView.findViewById(R.id.tvBalance);
+            tvAmount = itemView.findViewById(R.id.tvAmount);
         }
     }
 }
