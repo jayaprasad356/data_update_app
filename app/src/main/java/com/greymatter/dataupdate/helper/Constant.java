@@ -1,7 +1,7 @@
 package com.greymatter.dataupdate.helper;
 
 public class Constant {
-    public static final String MainBaseUrl = "http://updatedata.greymatterworks.in/";
+    public static final String MainBaseUrl = "https://updatedata.greymatterworks.in/";
     public static final String BaseUrl = MainBaseUrl + "api/";
     public static final String LOGIN_URL = BaseUrl + "login.php";
     public static final String ADD_USER_URL = BaseUrl + "add_user.php";
