@@ -84,7 +84,7 @@ public class MakeUserActivity extends AppCompatActivity {
 
     }
 
-    private void userList()
+    public void userList()
     {
         Map<String, String> params = new HashMap<>();
         params.put(Constant.MANAGER_ID,session.getData(Constant.ID));
