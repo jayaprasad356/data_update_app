@@ -87,6 +87,58 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/monti_med"
+                    android:layout_marginEnd="10dp"
+                    android:text="Expense"
+                    android:textStyle="bold"
+                    android:alpha="0.7"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/tvExpense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:fontFamily="@font/monti_med"
+                    android:textStyle="bold"
+                    android:textColor="@color/Primary"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/monti_med"
+                    android:layout_marginEnd="10dp"
+                    android:text="Total"
+                    android:textStyle="bold"
+                    android:alpha="0.7"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:fontFamily="@font/monti_med"
+                    android:textStyle="bold"
+                    android:textColor="@color/Primary"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
         </LinearLayout>
 

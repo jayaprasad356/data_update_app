@@ -95,6 +95,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
         holder.Name.setText(model.getName());
         holder.PhoneNumber.setText(model.getMobile());
         holder.Balance.setText("₹"+model.getBalance());
+        holder.tvExpense.setText(model.getExpense());
+        holder.tvTotal.setText(Integer.parseInt(model.getBalance()) + Integer.parseInt(model.getExpense()) + "");
 
         holder.btndelete.setOnClickListener(v -> alterDialog(model.getId()));
     }
@@ -134,7 +136,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
     public class viewholder extends RecyclerView.ViewHolder {
 
         private ImageView editBtn,btndelete;
-        private TextView Name,PhoneNumber,Balance;
+        private TextView Name,PhoneNumber,Balance,tvExpense,tvTotal;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             editBtn = itemView.findViewById(R.id.btnedit);
@@ -142,6 +144,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
             PhoneNumber = itemView.findViewById(R.id.tvPhoneNumber);
             Balance = itemView.findViewById(R.id.tvBalance);
             btndelete = itemView.findViewById(R.id.btndelete);
+            tvExpense = itemView.findViewById(R.id.tvExpense);
+            tvTotal = itemView.findViewById(R.id.tvTotal);
         }
     }
 
@@ -158,6 +162,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
                     if(object.getBoolean(Constant.SUCCESS)) {
                         Intent intent = new Intent(ctx, MakeUserActivity.class);
                         ctx.startActivity(intent);
+                        ctx.finish();
                         Toast.makeText(ctx, "Update done", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(ctx, object.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();

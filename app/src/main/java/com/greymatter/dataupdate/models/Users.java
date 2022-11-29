@@ -2,16 +2,17 @@ package com.greymatter.dataupdate.models;
 
 public class Users {
 
-    private String id,name,mobile,balance;
+    private String id,name,mobile,balance,expense;
     public Users(){
 
     }
 
-    public Users(String id, String name, String mobile, String balance) {
+    public Users(String id, String name, String mobile, String balance, String expense) {
         this.id = id;
         this.name = name;
         this.mobile = mobile;
         this.balance = balance;
+        this.expense = expense;
     }
 
     public String getId() {
@@ -44,5 +45,13 @@ public class Users {
 
     public void setBalance(String balance) {
         this.balance = balance;
+    }
+
+    public String getExpense() {
+        return expense;
+    }
+
+    public void setExpense(String expense) {
+        this.expense = expense;
     }
 }
