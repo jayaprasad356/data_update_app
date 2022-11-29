@@ -111,9 +111,6 @@ public class MakeUserActivity extends AppCompatActivity {
                         }
                         UserAdapter = new UserAdapter(users,activity);
                         recyclerView.setAdapter(UserAdapter);
-
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -149,8 +146,5 @@ public class MakeUserActivity extends AppCompatActivity {
                 }
             }
         },activity, Constant.ADD_USER_URL,params,true);
-
     }
-
-
 }

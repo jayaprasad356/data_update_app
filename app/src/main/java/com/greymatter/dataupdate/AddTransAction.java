@@ -131,7 +131,6 @@ public class AddTransAction extends AppCompatActivity {
                                 // Here you get the current item (a User object) that is selected by its position
                                 Users users = adapter.getItem(position);
                                 UserId = users.getId();
-
                             }
 
                             @Override

@@ -1,11 +1,13 @@
 package com.greymatter.dataupdate.adapters;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,19 +16,31 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.greymatter.dataupdate.helper.ApiConfig;
+import com.greymatter.dataupdate.helper.Constant;
+import com.greymatter.dataupdate.helper.Session;
 import com.greymatter.dataupdate.models.Users;
 import com.greymatter.dataupdate.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
 
 
     private ArrayList<Users> usersArrayList;
-    private Context ctx;
-    public UserAdapter(ArrayList<Users> usersArrayList, Context ctx) {
+    private Activity ctx;
+    private Session session;
+    public UserAdapter(ArrayList<Users> usersArrayList, Activity ctx) {
         this.usersArrayList = usersArrayList;
         this.ctx = ctx;
+        session= new Session(ctx);
     }
 
 
@@ -43,24 +57,32 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
         AlphaAnimation animation = new AlphaAnimation(0.0f,1.0f);
         animation.setDuration(1000);
         animation.setFillAfter(true);
+        EditText TempEtName,TempEtMobile,TempEtExpenses;
+        Dialog dialog = new Dialog(ctx);
+        dialog.setContentView(R.layout.customdia);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(true);
+        dialog.getWindow().setDimAmount(0.3f);
+        TempEtName = dialog.findViewById(R.id.etName);
+        TempEtMobile = dialog.findViewById(R.id.etMobile);
+        TempEtExpenses = dialog.findViewById(R.id.etExpense);
+        TempEtMobile.setText(model.getMobile());
+        TempEtName.setText(model.getName());
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(ctx);
-                dialog.setContentView(R.layout.customdia);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.setCancelable(true);
                 dialog.show();
-                dialog.getWindow().setDimAmount(0.3f);
                 dialog.findViewById(R.id.cvMakeUser).setOnClickListener(new View.OnClickListener() {
-                    private EditText TempEtName,TempEtNumber,TempEtAmount;
+                    private EditText TempEtName,TempEtNumber,TempEtExpenses;
                     @Override
                     public void onClick(View v) {
                         TempEtName = dialog.findViewById(R.id.etName);
-                        TempEtAmount = dialog.findViewById(R.id.etAmount);
+                        TempEtExpenses = dialog.findViewById(R.id.etExpense);
                         TempEtNumber = dialog.findViewById(R.id.etMobile);
+                        UpdateDataToApi(TempEtName.getText().toString().trim(),TempEtNumber.getText().toString().trim(),model.getId(),TempEtExpenses.getText().toString().trim());
                         dialog.dismiss();
-                        Toast.makeText(ctx, "Update done", Toast.LENGTH_SHORT).show();
+
+                      //  Toast.makeText(ctx, "Update done", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -86,5 +108,27 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
             PhoneNumber = itemView.findViewById(R.id.tvPhoneNumber);
             Balance = itemView.findViewById(R.id.tvBalance);
         }
+    }
+
+    private void UpdateDataToApi(String name,String number,String user_id,String Expenses) {
+        Map<String,String> params = new HashMap<>();
+        params.put(Constant.USER_ID,user_id);
+        params.put(Constant.NAME,name);
+        params.put(Constant.MOBILE,number);
+        params.put(Constant.EXPENSES,Expenses);
+        ApiConfig.RequestToVolley((result, response) -> {
+            if(result) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if(object.getBoolean(Constant.SUCCESS)) {
+                        Toast.makeText(ctx, "Update done", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(ctx, object.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        },ctx,Constant.UPDATE_USER_URL,params,true);
     }
 }

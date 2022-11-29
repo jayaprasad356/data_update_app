@@ -8,11 +8,13 @@ public class Constant {
     public static final String USER_LIST_URL = BaseUrl + "user_list.php";
     public static final String TRANSACTIONSLIST_URL = BaseUrl + "transactions_list.php";
     public static final String ADD_TRANSACTION_URL = BaseUrl + "add_transaction.php";
+    public static final String UPDATE_USER_URL = BaseUrl + "update_user.php";
     public static final String SUCCESS = "success";
     public static final String MESSAGE = "message";
 
     public static final String PIN = "pin";
     public static final String ID = "id";
+    public static final String EXPENSES = "expense";
     public static final String MANAGER_ID = "manager_id";
     public static final String USER_ID = "user_id";
     public static final String AMOUNT = "amount";

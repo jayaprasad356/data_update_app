@@ -88,11 +88,11 @@
             android:id="@+id/btnedit"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:visibility="invisible"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginEnd="30dp"
-            android:src="@drawable/ic_edit_btn" />
+            android:src="@drawable/ic_edit_btn"
+            android:visibility="visible" />
     </RelativeLayout>
 
 
