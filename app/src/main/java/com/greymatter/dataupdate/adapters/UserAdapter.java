@@ -1,8 +1,12 @@
 package com.greymatter.dataupdate.adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.greymatter.dataupdate.MakeUserActivity;
 import com.greymatter.dataupdate.helper.ApiConfig;
 import com.greymatter.dataupdate.helper.Constant;
 import com.greymatter.dataupdate.helper.Session;
@@ -89,7 +94,36 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
         });
         holder.Name.setText(model.getName());
         holder.PhoneNumber.setText(model.getMobile());
-        holder.Balance.setText(model.getBalance());
+        holder.Balance.setText("₹"+model.getBalance());
+
+        holder.btndelete.setOnClickListener(v -> alterDialog(model.getId()));
+    }
+
+    private void alterDialog(String id) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+
+        builder.setMessage("Do you want to Delete ?");
+        builder.setTitle("");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+
+            Deleteuser(id);
+            Intent intent = new Intent(ctx, MakeUserActivity.class);
+            ctx.startActivity(intent);
+            Toast.makeText(ctx, "Deleted", Toast.LENGTH_SHORT).show();
+            ctx.finish();
+
+
+
+        });
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override
@@ -99,7 +133,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        private ImageView editBtn;
+        private ImageView editBtn,btndelete;
         private TextView Name,PhoneNumber,Balance;
         public viewholder(@NonNull View itemView) {
             super(itemView);
@@ -107,6 +141,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
             Name = itemView.findViewById(R.id.tvName);
             PhoneNumber = itemView.findViewById(R.id.tvPhoneNumber);
             Balance = itemView.findViewById(R.id.tvBalance);
+            btndelete = itemView.findViewById(R.id.btndelete);
         }
     }
 
@@ -121,6 +156,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
                 try {
                     JSONObject object = new JSONObject(response);
                     if(object.getBoolean(Constant.SUCCESS)) {
+                        Intent intent = new Intent(ctx, MakeUserActivity.class);
+                        ctx.startActivity(intent);
                         Toast.makeText(ctx, "Update done", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(ctx, object.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
@@ -130,5 +167,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
                 }
             }
         },ctx,Constant.UPDATE_USER_URL,params,true);
+    }
+    private void Deleteuser(String id) {
+        Map<String,String> params = new HashMap<>();
+        params.put(Constant.USER_ID,id);
+        ApiConfig.RequestToVolley((result, response) -> {
+            Log.d("delete",response);
+            if(result) {
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if(object.getBoolean(Constant.SUCCESS)) {
+
+                    }else{
+
+                        Toast.makeText(ctx, object.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        },ctx,Constant.DELETE_USER,params,true);
     }
 }

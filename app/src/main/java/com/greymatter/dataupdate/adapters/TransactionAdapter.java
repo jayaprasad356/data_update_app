@@ -38,8 +38,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         holder.tvName.setText(model.getName());
         holder.tvRemarks.setText(model.getRemarks());
         holder.tvDate.setText(model.getDate());
-        holder.tvBalance.setText(model.getBalance());
-        holder.tvAmount.setText(model.getAmount());
+        holder.tvBalance.setText("₹"+model.getBalance());
+        holder.tvAmount.setText("₹"+model.getAmount());
     }
 
     @Override

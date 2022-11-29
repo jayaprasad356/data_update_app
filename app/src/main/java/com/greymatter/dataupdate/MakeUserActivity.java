@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -63,6 +64,7 @@ public class MakeUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registerUser(etName.getText().toString().trim(),etMobile.getText().toString().trim(),dialog);
+
             }
         });
         btnAddUser.setOnClickListener(new View.OnClickListener() {
