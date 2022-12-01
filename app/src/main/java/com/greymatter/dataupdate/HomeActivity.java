@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -26,8 +29,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
@@ -36,9 +42,12 @@ public class HomeActivity extends AppCompatActivity {
     Activity activity;
     TransactionAdapter transactionAdapter;
     RecyclerView recyclerView;
-    CardView cvAddTransaction,cvMakeUser;
-    TextView tvName,tvNumber,tvEmail,tvProfileInitial;
+    CardView cvAddTransaction, cvMakeUser;
+    TextView tvName, tvNumber, tvEmail, tvProfileInitial, totalBalance;
     Session session;
+    String totalBal;
+    final Calendar myCalendar = Calendar.getInstance();
+    TextView editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +62,28 @@ public class HomeActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvNumber = findViewById(R.id.tvNumber);
         recyclerView = findViewById(R.id.RecyclerTransactions);
+        totalBalance = findViewById(R.id.tvTotBal);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        editText = findViewById(R.id.Birthday);
 
         String str = session.getData(Constant.NAME);
         char firstChar = str.charAt(0);
-
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                updateLabel();
+            }
+        };
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(HomeActivity.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
         tvProfileInitial.setText(firstChar + "");
         tvName.setText(session.getData(Constant.NAME));
         tvNumber.setText(session.getData(Constant.MOBILE));
@@ -65,27 +91,36 @@ public class HomeActivity extends AppCompatActivity {
         cvMakeUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this,MakeUserActivity.class));
+                startActivity(new Intent(HomeActivity.this, MakeUserActivity.class));
             }
         });
         transactionList();
 
-        cvAddTransaction.setOnClickListener( v-> {
-            startActivity(new Intent(activity,AddTransAction.class));
+        cvAddTransaction.setOnClickListener(v -> {
+            startActivity(new Intent(activity, AddTransAction.class));
         });
 
     }
 
-    private void transactionList()
-    {
+    private void updateLabel() {
+
+        String myFormat = "dd/MM/yy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ENGLISH);
+        editText.setText(dateFormat.format(myCalendar.getTime()));
+
+    }
+
+    private void transactionList() {
         Map<String, String> params = new HashMap<>();
-        params.put(Constant.MANAGER_ID,session.getData(Constant.ID));
+        params.put(Constant.MANAGER_ID, session.getData(Constant.ID));
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("TRANS_RES",response);
+            Log.d("TRANS_RES", response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
+                        totalBal = jsonObject.getString(Constant.SUCCESS);
+                        totalBalance.setText(totalBal);
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
                         Gson g = new Gson();
@@ -102,9 +137,8 @@ public class HomeActivity extends AppCompatActivity {
                             }
                         }
 
-                        transactionAdapter = new TransactionAdapter(transactions,activity);
+                        transactionAdapter = new TransactionAdapter(transactions, activity);
                         recyclerView.setAdapter(transactionAdapter);
-
 
 
                     }
@@ -114,7 +148,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }, activity, Constant.TRANSACTIONSLIST_URL, params, true);
-
 
 
     }

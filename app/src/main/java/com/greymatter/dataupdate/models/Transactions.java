@@ -2,7 +2,7 @@ package com.greymatter.dataupdate.models;
 
 public class Transactions {
 
-    private String name,balance,amount,remarks,date;
+    private String name,balance,amount,remarks,date,total_balance;
 
     public Transactions(String name, String balance, String amount, String remarks, String date) {
         this.name = name;
@@ -50,5 +50,13 @@ public class Transactions {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTotal_balance() {
+        return total_balance;
+    }
+
+    public void setTotal_balance(String total_balance) {
+        this.total_balance = total_balance;
     }
 }
