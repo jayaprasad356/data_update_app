@@ -12,6 +12,7 @@ public class Constant {
     public static final String DELETE_USER = BaseUrl + "delete_user.php";
     public static final String SUCCESS = "success";
     public static final String MESSAGE = "message";
+    public static final String GRAND_TOTAL = "grand_total";
 
     public static final String PIN = "pin";
     public static final String ID = "id";

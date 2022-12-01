@@ -83,15 +83,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
         etneed.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-
-
-
-
-
-
 
 
             }
@@ -124,7 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
         editText.setText(""+date);
 
@@ -181,24 +174,29 @@ public class HomeActivity extends AppCompatActivity {
 
     private void updateLabel() {
 
-        String myFormat = "yyyy/MM/dd";
+        String myFormat = "yyyy-MM-dd";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ENGLISH);
         editText.setText(dateFormat.format(myCalendar.getTime()));
+        transactionList();
 
     }
 
 
     private void transactionList() {
+        tvAmount.setText("0");
+        ArrayList<Transactions> transactions1 = new ArrayList<>();
+        transactionAdapter = new TransactionAdapter(transactions1, activity);
+        recyclerView.setAdapter(transactionAdapter);
         Map<String, String> params = new HashMap<>();
         params.put(Constant.MANAGER_ID,session.getData(Constant.ID));
-        params.put(Constant.DATE, "2022/12/01");
+        params.put(Constant.DATE, editText.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
             Log.d("TRANS_RES", response);
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
-                        totalBal = jsonObject.getString(Constant.SUCCESS);
+
                       //  totalBalance.setText(totalBal);
                         JSONObject object = new JSONObject(response);
                         JSONArray jsonArray = object.getJSONArray(Constant.DATA);
@@ -215,9 +213,13 @@ public class HomeActivity extends AppCompatActivity {
                                 break;
                             }
                         }
+                        if (jsonArray.length() >= 1){
+                            tvAmount.setText(jsonObject.getString(Constant.GRAND_TOTAL));
+                            transactionAdapter = new TransactionAdapter(transactions, activity);
+                            recyclerView.setAdapter(transactionAdapter);
+                        }
 
-                        transactionAdapter = new TransactionAdapter(transactions, activity);
-                        recyclerView.setAdapter(transactionAdapter);
+
 
 
                     }
