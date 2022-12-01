@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,15 @@
     android:background="@color/CustomWhite"
     android:orientation="vertical"
     tools:context=".HomeActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
 
 
     <RelativeLayout
@@ -155,7 +164,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/Birthday"
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -166,10 +175,12 @@
         android:focusableInTouchMode="false"
         android:fontFamily="@font/monti_med"
         android:gravity="left"
+        android:padding="10dp"
         android:hint="Select Date"
         android:paddingVertical="4dp"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerTransactions"
@@ -178,35 +189,168 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp" />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:padding="10dp"
+        android:background="@color/Primary"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:orientation="horizontal"
+        android:weightSum="3"
+        >
 
-        <TextView
-            android:id="@+id/tvTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.7"
-            android:fontFamily="@font/monti_med"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="Grand Total" />
 
-        <TextView
-            android:id="@+id/tvTotBal"
-            android:layout_width="wrap_content"
-           android:layout_marginLeft="30dp"
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Need"
+                    android:textColor="@color/grey"
+                    />
+
+
+                <EditText
+                    android:id="@+id/etneed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_back"
+                    android:backgroundTint="@color/white"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="2dp"
+                    android:textColor="@color/Primary"
+                    android:maxLength="7"
+                    />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="-"
+                android:paddingTop="10dp"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/tvTotal"
-            android:fontFamily="@font/monti_med"
-            android:text="$ 100"
-            android:textColor="@color/Primary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:gravity="center"/>
-    </RelativeLayout>
-</LinearLayout>
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                android:textColor="@color/grey"
+                />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="55"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                />
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="="
+                android:paddingTop="10dp"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profit / Loss"
+                android:textColor="@color/grey"
+                />
+
+
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
