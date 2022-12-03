@@ -9,6 +9,7 @@ public class Constant {
     public static final String TRANSACTIONSLIST_URL = BaseUrl + "transactions_list.php";
     public static final String ADD_TRANSACTION_URL = BaseUrl + "add_transaction.php";
     public static final String UPDATE_USER_URL = BaseUrl + "update_user.php";
+    public static final String UPDATE_NEED_URL = BaseUrl +"update_need.php";
     public static final String DELETE_USER = BaseUrl + "delete_user.php";
     public static final String SUCCESS = "success";
     public static final String MESSAGE = "message";
