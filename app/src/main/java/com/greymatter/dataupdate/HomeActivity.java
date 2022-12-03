@@ -14,6 +14,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
     CardView cvAddTransaction, cvMakeUser;
     TextView tvName, tvNumber, tvEmail, tvProfileInitial, totalBalance;
     Session session;
-    String totalBal;
+    Button btnSave;
     final Calendar myCalendar = Calendar.getInstance();
     TextView editText,tvAmount,tvTotal;
     private Calendar calendar;
@@ -70,6 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvNumber = findViewById(R.id.tvNumber);
         recyclerView = findViewById(R.id.RecyclerTransactions);
+        btnSave = findViewById(R.id.btnSave);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         editText = findViewById(R.id.tvDate);
