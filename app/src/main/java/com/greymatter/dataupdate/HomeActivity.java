@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormat;
     private String date;
     EditText etneed;
-    String s1, s2;
+    String s1, s2,needamount = "0",totalamount = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,11 +156,16 @@ public class HomeActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put(Constant.MANAGER_ID, session.getData(Constant.ID));
         params.put(Constant.DATE, editText.getText().toString().trim());
-        params.put(Constant.AMOUNT, tvAmount.getText().toString().trim());
+        params.put(Constant.AMOUNT, etneed.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
-            Log.d("SAVE_DATA", response);
             if (result) {
-                Toast.makeText(activity, "Data Saved Successfylly", Toast.LENGTH_SHORT).show();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    Toast.makeText(activity, jsonObject.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         }, activity, Constant.UPDATE_NEED_URL, params, true);
     }
@@ -169,8 +174,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
         try {
-            int i1 = Integer.parseInt(s1);
-            int i2 = Integer.parseInt(s2);
+            int i1 = Integer.parseInt(etneed.getText().toString().trim());
+            int i2 = Integer.parseInt(tvAmount.getText().toString().trim());
             int subtract = i1 - i2;
             String s = String.valueOf(subtract);
             tvTotal.setText(s + "₹");
@@ -202,13 +207,14 @@ public class HomeActivity extends AppCompatActivity {
             if (result) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    needamount = jsonObject.getString("need_amount");
+                    etneed.setText(needamount);
+
                     if (jsonObject.getBoolean(Constant.SUCCESS)) {
 
                         //  totalBalance.setText(totalBal);
-                        JSONObject object = new JSONObject(response);
-                        JSONArray jsonArray = object.getJSONArray(Constant.DATA);
-                        String needAmout = jsonObject.getString("need_amount");
-                        etneed.setText(needAmout);
+
+                        JSONArray jsonArray = jsonObject.getJSONArray(Constant.DATA);
 
                         Gson g = new Gson();
                         ArrayList<Transactions> transactions = new ArrayList<>();
@@ -224,13 +230,16 @@ public class HomeActivity extends AppCompatActivity {
                             }
                         }
                         if (jsonArray.length() >= 1) {
-                            tvAmount.setText(jsonObject.getString(Constant.GRAND_TOTAL));
+                            totalamount = jsonObject.getString(Constant.GRAND_TOTAL);
+                            tvAmount.setText(totalamount);
                             transactionAdapter = new TransactionAdapter(transactions, activity);
                             recyclerView.setAdapter(transactionAdapter);
                         }
+                        calculate();
 
 
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
 

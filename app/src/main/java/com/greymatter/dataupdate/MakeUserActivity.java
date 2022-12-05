@@ -58,12 +58,13 @@ public class MakeUserActivity extends AppCompatActivity {
         dialog.getWindow().setDimAmount(0.3f);
         EditText etName = dialog.findViewById(R.id.etName);
         EditText etMobile = dialog.findViewById(R.id.etMobile);
+        EditText etExpense = dialog.findViewById(R.id.etExpense);
         CardView cvMakeUser = dialog.findViewById(R.id.cvMakeUser);
 
         cvMakeUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser(etName.getText().toString().trim(),etMobile.getText().toString().trim(),dialog);
+                registerUser(etName.getText().toString().trim(),etMobile.getText().toString().trim(),etExpense.getText().toString().trim(),dialog);
 
             }
         });
@@ -123,12 +124,13 @@ public class MakeUserActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String name, String mobile, Dialog dialog)
+    private void registerUser(String name, String mobile, String expense, Dialog dialog)
     {
         Map<String,String> params = new HashMap<>();
         params.put(Constant.MANAGER_ID,session.getData(Constant.ID));
         params.put(Constant.NAME,name.trim());
         params.put(Constant.MOBILE,mobile.trim());
+        params.put(Constant.EXPENSES,expense);
         ApiConfig.RequestToVolley((result, response) -> {
             Log.d("ADD_USER",response);
             if(result) {

@@ -73,6 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
         TempEtExpenses = dialog.findViewById(R.id.etExpense);
         TempEtMobile.setText(model.getMobile());
         TempEtName.setText(model.getName());
+        TempEtExpenses.setText(model.getExpense());
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,7 +164,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
                         Intent intent = new Intent(ctx, MakeUserActivity.class);
                         ctx.startActivity(intent);
                         ctx.finish();
-                        Toast.makeText(ctx, "Update done", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ctx, "User Updated Successfully", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(ctx, object.getString(Constant.MESSAGE), Toast.LENGTH_SHORT).show();
                     }
